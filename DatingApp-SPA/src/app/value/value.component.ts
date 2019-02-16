@@ -8,18 +8,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ValueComponent implements OnInit {
     values: any;
-    
-    constructor(private http:HttpClient) { }
-    
+
+    constructor(private http: HttpClient) { }
+
     ngOnInit() {
         this.getValues();
     }
-    
+
     getValues() {
-        this.http.get('http://54.204.254.168:3080/api/values').subscribe(response => {
+        this.http.get('http://localhost:3080/api/values').subscribe(response => {
             this.values = response;
         }, error => {
             console.log(error);
-        })
+        });
     }
 }
