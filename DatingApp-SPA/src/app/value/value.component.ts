@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-value',
@@ -16,7 +17,7 @@ export class ValueComponent implements OnInit {
     }
 
     getValues() {
-        this.http.get('http://localhost:3080/api/values').subscribe(response => {
+        this.http.get(environment.API_URL + '/api/values').subscribe(response => {
             this.values = response;
         }, error => {
             console.log(error);
