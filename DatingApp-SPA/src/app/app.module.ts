@@ -22,8 +22,6 @@ import { UserService } from './_services/user.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { environment } from 'src/environments/environment';
 
-const baseUrl = environment.Jwt_URL;
-
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
@@ -48,8 +46,8 @@ export function tokenGetter() {
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGetter,
-            whitelistedDomains: [baseUrl],
-            blacklistedRoutes: [baseUrl + 'api/auth']
+            whitelistedDomains: [environment.JwtWhiteList_URL],
+            blacklistedRoutes: [environment.JwtWhiteList_URL + '/DatingApp_API/api/auth/']
          }
       })
    ],
