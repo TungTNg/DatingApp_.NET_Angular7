@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -47,11 +49,15 @@ export function tokenGetter() {
          config: {
             tokenGetter: tokenGetter,
             whitelistedDomains: [environment.JwtWhiteList_URL],
-            blacklistedRoutes: [environment.JwtWhiteList_URL + '/DatingApp_API/api/auth/']
+            // blacklistedRoutes: [environment.JwtWhiteList_URL + '/DatingApp_API/api/auth/']
          }
-      })
+      }),
    ],
    providers: [
+      {
+         provide: LocationStrategy,
+         useClass: HashLocationStrategy
+      },
       AuthService,
       ErrorInterceptorProvider,
       AlertifyService,
